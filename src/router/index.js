@@ -4,21 +4,21 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  {
+  {//添加页面
     path: "/",
     name: "Home",
     component: () => import("@/views/Home"),
   },
-  {
-    path: "/register",
+  {//添加页面
+    path: "/register",//输入这个地址
     name: "register",
-    component: () => import("@/views/auth/Register"),
+    component: () => import("@/views/auth/Register"),//则显示这个组件
     meta: { title: "注册" },
   },
   // 登录
   {
     name: "login",
-    path: "/login",
+    path: "/login",//地址栏输入login时进入login界面
     component: () => import("@/views/auth/Login"),
     meta: { title: "登录" },
   },
@@ -26,7 +26,7 @@ const routes = [
   {
     name: "post-create",
     path: "/post/create",
-    component: () => import("@/views/post/Create"),
+    component: () => import("@/views/post/Create"),//跳转到这个页面
     meta: { title: "信息发布", requireAuth: true },
   },
   // 编辑
@@ -80,14 +80,19 @@ const routes = [
     meta: { title: "404-NotFound" },
   },
   {
-    path: "*",
+    path: '/im',
+    name: 'Im',
+    component: () => import("@/views/Im"),
+  },
+  {
+    path: "*",//用户请求的非以上所有路由：则重定向到404
     redirect: "/404",
     hidden: true,
   },
 ];
 
 const originalPush = VueRouter.prototype.push;
-VueRouter.prototype.push = function push(location) {
+VueRouter.prototype.push = function push(location) {//重写push（Header.vue中158行），在出现异常时接住异常而不抛出
   return originalPush.call(this, location).catch((err) => err);
 };
 
@@ -96,3 +101,7 @@ const router = new VueRouter({
 });
 
 export default router;
+
+
+
+

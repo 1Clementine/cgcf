@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export function userRegister(userDTO) {
   return request({
     url: '/ums/user/register',
-    method: 'post',
+    method: 'post',//post请求：需要向服务器提交参数
     data: userDTO
   })
 }
@@ -19,14 +19,14 @@ export function login(data) {
 }
 // 登录后获取前台用户信息
 export function getUserInfo() {
-  return request({
+  return request({//返回一个请求
     url: '/ums/user/info',
     method: 'get'
   })
 }
 // 前台用户注销
 export function logout() {
-  return request({
+  return request({//返回一个请求
     url: '/ums/user/logout'
   })
 }

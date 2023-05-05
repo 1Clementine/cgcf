@@ -2,15 +2,15 @@
   <footer class="footer has-text-grey-light has-background-grey-darker">
     <div class="container">
       <div class="">
-        <span>简洁、实用、美观</span>
+        <span>为每一个游戏人而来</span>
 
         <span style="float: right">
-          <router-link :to="{path:'/admin/login'}">
+          <router-link :to="{path:'/login'}">
             管理员登录
           </router-link>
-          |
+          <!-- |
           <a href="/?lang=zh_CN">中文</a> |
-          <a href="/?lang=en_US">English</a>
+          <a href="/?lang=en_US">English</a> -->
         </span>
       </div>
 
@@ -20,7 +20,7 @@
           <template>
             <b-taglist attached>
               <b-tag type="is-dark" size="is-normal">Design</b-tag>
-              <b-tag type="is-info" size="is-normal">{{ author }}</b-tag>
+              <b-tag type="is-info" size="is-normal">孙羽航</b-tag>
             </b-taglist>
           </template>
         </div>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import BackTop from "@/components/Backtop/BackTop";
+import BackTop from "@/components/Backtop/BackTop";//引入返回底部组件
 
 export default {
   name: "Footer",
@@ -40,8 +40,8 @@ export default {
   },
   data() {
     return {
-      title: "© " + new Date().getFullYear() + ' 豆约翰',
-      author: '豆约翰',
+      title: "© " + new Date().getFullYear() + ' 孙羽航',
+      author: '孙羽航',
     };
   },
 };

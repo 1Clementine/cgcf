@@ -3,7 +3,8 @@
     <b-navbar
       class="container is-white"
       :fixed-top="true"
-    >
+    ><!-- 头部导航 -->
+    
       <template slot="brand">
         <b-navbar-item tag="div">
           <img :src="doubaoImg" alt="logo">
@@ -13,7 +14,7 @@
           class="is-hidden-desktop"
           tag="router-link"
           :to="{ path: '/' }"
-        >
+        ><!-- 在桌面中隐藏起来 -->
           主页
         </b-navbar-item>
       </template>
@@ -62,7 +63,7 @@
         <b-navbar-item
           v-if="token == null || token === ''"
           tag="div"
-        >
+        ><!-- 如果token是空的，则显示注册和登录 -->
           <div class="buttons">
             <b-button
               class="is-light"
@@ -84,7 +85,7 @@
         <b-navbar-dropdown
           v-else
           :label="user.alias"
-        >
+        ><!-- 如果token非空的，则显示以下 -->
           <b-navbar-item
             tag="router-link"
             :to="{ path: `/member/${user.username}/home` }"
@@ -104,6 +105,7 @@
             @click="logout"
           > 👋 退出登录
           </b-navbar-item>
+          <!-- 点击执行logout方法（在下面） -->
         </b-navbar-dropdown>
       </template>
     </b-navbar>
@@ -126,7 +128,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['token', 'user'])
+    ...mapGetters(['token', 'user'])//getter：可以提取出state信息中的token、user
   },
   watch: {
     // 监听Theme模式
@@ -150,10 +152,10 @@ export default {
   },
   methods: {
     async logout() {
-      this.$store.dispatch('user/logout').then(() => {
+      this.$store.dispatch('user/logout').then(() => {//调用store/module/user.js的logout
         this.$message.info('退出登录成功')
-        setTimeout(() => {
-          this.$router.push({ path: this.redirect || '/' })
+        setTimeout(() => {//setTimeout() 是设定一个指定等候时间 (单位是千分之一秒, millisecond), 时间到了, 浏览器就会执行一个指定的代码
+          this.$router.push({ path: this.redirect || '/' })//把这个路由（跳转到首页）传给router对象
         }, 500)
       })
     },

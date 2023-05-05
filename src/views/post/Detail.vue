@@ -44,7 +44,7 @@
           <div
             v-if="token && user.id === topicUser.id"
             class="level-right"
-          >
+          > <!-- || user.id === '1644298376815779841' -->
             <router-link
               class="level-item"
               :to="{name:'topic-edit',params: {id:topic.id}}"

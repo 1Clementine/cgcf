@@ -3,11 +3,12 @@
     <el-card shadow="never">
       <div slot="header" class="clearfix">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="最新主题" name="latest">
+          <el-tab-pane label="最新游戏板块" name="latest">
+            <!-- tab.name -->
             <article v-for="(item, index) in articleList" :key="index" class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img :src="`https://cn.gravatar.com/avatar/${item.userId}?s=164&d=monsterid`" style="border-radius: 5px;">
+                  <img :src="`https://cn.gravatar.com/avatar/${item.userId}?s=164&d=monsterid`" style="border-radius: 5px;"><!-- 返回用户的id -->
                 </figure>
               </div>
               <div class="media-content">
@@ -49,7 +50,7 @@
               <div class="media-right" />
             </article>
           </el-tab-pane>
-          <el-tab-pane label="热门主题" name="hot">
+          <el-tab-pane label="热门推荐板块" name="hot">
             <article v-for="(item, index) in articleList" :key="index" class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
@@ -112,15 +113,15 @@
 
 <script>
 import { getList } from '@/api/post'
-import Pagination from '@/components/Pagination'
+import Pagination from '@/components/Pagination'//导入分页组件
 
 export default {
   name: 'TopicList',
-  components: { Pagination },
+  components: { Pagination },//分页
   data() {
     return {
       activeName: 'latest',
-      articleList: [],
+      articleList: [],//请求列表
       page: {
         current: 1,
         size: 10,
@@ -139,7 +140,7 @@ export default {
         this.page.current = data.current
         this.page.total = data.total
         this.page.size = data.size
-        this.articleList = data.records
+        this.articleList = data.records//将回应里的数据回应给上面articleList
       })
     },
     handleClick(tab) {

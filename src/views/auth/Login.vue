@@ -35,6 +35,7 @@
               <el-button type="primary" @click="submitForm('ruleForm')"
                 >提交</el-button
               >
+              <!-- 点击提交之后跳转到submitForm（在下面） -->
               <el-button @click="resetForm('ruleForm')">重置</el-button>
             </el-form-item>
           </el-form>
@@ -51,7 +52,7 @@ export default {
     return {
       redirect: undefined,
       loading: false,
-      ruleForm: {
+      ruleForm: {//传进去的数据
         name: "",
         pass: "",
         rememberMe: true,
@@ -80,18 +81,18 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate((valid) => {//校验数据是否符合规则
         if (valid) {
           this.loading = true;
-          this.$store
-            .dispatch("user/login", this.ruleForm)
+          this.$store//向vuex的store发送请求
+            .dispatch("user/login", this.ruleForm)//user/login：store下的modules下的user.js中的login函数，把这个请求发给login函数，传进去的就是上文的ruleForm
             .then(() => {
               this.$message({
                 message: "恭喜你，登录成功",
                 type: "success",
                 duration: 2000,
               });
-
+              localStorage.setItem('user',JSON.stringify(this[formName]));
               setTimeout(() => {
                 this.loading = false;
                 this.$router.push({ path: this.redirect || "/" });

@@ -1,11 +1,15 @@
 <template>
   <el-card class="box-card" shadow="never">
     <div slot="header">
-      <span>🥂 推广</span>
+      <span>🥂 语音聊天室</span>
     </div>
     <div>
+      
       <p v-for="(item, index) in list" :key="index" class="block">
-        <a :href="item.link" target="_blank">{{ item.title }}</a>
+        <router-link :to="{path:'/im'}">
+            进入聊天室
+          </router-link>
+        <!-- <a :href="item.link" target="_blank">{{ item.title }}</a> -->
       </p>
     </div>
   </el-card>
@@ -13,12 +17,14 @@
 
 <script>
 import { getList } from '@/api/promote'
+// import im from '@/views/Im'
 
 export default {
   name: 'Promotion',
+  // components: {im},
   data() {
     return {
-      list: []
+      list: []//定义一个空的列表
     }
   },
   created() {

@@ -39,7 +39,9 @@ export function getRecommendTopics(id) {
   })
 }
 
-export function update(topic) {
+
+//更新文章
+export function update(topic) {//更新时将新帖子对象发给服务器
   return request({
     url: '/post/update',
     method: 'post',
@@ -47,6 +49,7 @@ export function update(topic) {
   })
 }
 
+//删除文章
 export function deleteTopic(id) {
   return request({
     url: `/post/delete/${id}`,

@@ -17,4 +17,3 @@ export function pushComment(data) {
     data: data
   })
 }
-

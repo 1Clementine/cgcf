@@ -8,13 +8,13 @@ export function getToken() {
     return Cookies.get(uToken);
 }
 
-// 设置Token，1天,与后端同步
+// 设置Token，7天,与后端同步
 export function setToken(token) {
-    return Cookies.set(uToken, token, {expires: 1})
+    return Cookies.set(uToken, token, {expires: 7})
 }
 
 // 删除Token
-export function removeToken() {
+export function removeToken() {//从cookie中删除token
     return Cookies.remove(uToken)
 }
 

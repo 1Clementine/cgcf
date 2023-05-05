@@ -2,6 +2,7 @@
   <div class="columns py-6">
     <div class="column is-half is-offset-one-quarter">
       <el-card shadow="never">
+        <!-- element-ui的card -->
         <div slot="header" class="has-text-centered has-text-weight-bold">
           新用户入驻
         </div>
@@ -59,7 +60,7 @@ import { userRegister } from '@/api/auth/auth'
 export default {
   name: 'Register',
   data() {
-    const validatePass = (rule, value, callback) => {
+    const validatePass = (rule, value, callback) => {//下文checkpass出现的校验器
       if (value === '') {
         callback(new Error('请再次输入密码'))
       } else if (value !== this.ruleForm.pass) {
@@ -70,23 +71,23 @@ export default {
     }
     return {
       loading: false,
-      ruleForm: {
+      ruleForm: {//表单的加载字段
         name: '',
         pass: '',
         checkPass: '',
         email: ''
       },
-      rules: {
-        name: [
+      rules: {//表单的加载字段对应规则
+        name: [//姓名规则
           { required: true, message: '请输入账号', trigger: 'blur' },
           {
             min: 2,
             max: 10,
             message: '长度在 2 到 10 个字符',
-            trigger: 'blur'
+            trigger: 'blur'//切换输入框时进行校验
           }
         ],
-        pass: [
+        pass: [//密码规则
           { required: true, message: '请输入密码', trigger: 'blur' },
           {
             min: 6,
@@ -95,11 +96,11 @@ export default {
             trigger: 'blur'
           }
         ],
-        checkPass: [
+        checkPass: [//确认密码规则
           { required: true, message: '请再次输入密码', trigger: 'blur' },
-          { validator: validatePass, trigger: 'blur' }
+          { validator: validatePass, trigger: 'blur' }//校验器：对应上述密码
         ],
-        email: [
+        email: [//邮箱规则
           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           {
             type: 'email',
@@ -110,7 +111,7 @@ export default {
       }
     }
   },
-  methods: {
+  methods: {//点击后运行submitForm方法
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {

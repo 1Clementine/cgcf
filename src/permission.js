@@ -8,7 +8,7 @@ import {getToken} from "@/utils/auth"; // progress bar style
 
 NProgress.configure({showSpinner: false}) // NProgress Configuration
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {//在每一次跳转前做的事
     // start progress bar
     NProgress.start()
     // set page title

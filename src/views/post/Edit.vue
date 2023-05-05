@@ -71,7 +71,7 @@ export default {
         },
       });
     },
-    fetchTopic() {
+    fetchTopic() {//取回帖子内容然后更改
       getTopic(this.$route.params.id).then((value) => {
         this.topic = value.data.topic;
         this.tags = value.data.tags.map(tag => tag.name);
